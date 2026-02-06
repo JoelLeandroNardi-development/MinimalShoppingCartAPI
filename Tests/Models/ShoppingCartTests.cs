@@ -17,7 +17,7 @@ public class ShoppingCartTests
         var item2 = new ShoppingCartItem(new CatalogItem("Lapiz", 5m), 1);
 
         var cart = new ShoppingCart();
-        cart.ReplaceItems(new List<ShoppingCartItem> { item1, item2 });
+        cart.ReplaceItems([item1, item2]);
 
         Assert.Equal(25m, cart.TotalPrice);
     }
@@ -27,10 +27,10 @@ public class ShoppingCartTests
     {
         var item1 = new ShoppingCartItem(new CatalogItem("Libro", 10m), 1);
         var cart = new ShoppingCart();
-        cart.ReplaceItems(new List<ShoppingCartItem> { item1 });
+        cart.ReplaceItems([item1]);
 
         var item2 = new ShoppingCartItem(new CatalogItem("Lapiz", 5m), 2);
-        cart.ReplaceItems(new List<ShoppingCartItem> { item2 });
+        cart.ReplaceItems([item2]);
 
         Assert.Single(cart.Items);
         Assert.Equal(item2, cart.Items[0]);

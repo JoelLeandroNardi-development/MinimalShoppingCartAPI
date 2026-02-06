@@ -24,7 +24,7 @@ public class ShoppingCartActionsTests
         var result = await ShoppingCartActions.GetAll(db);
         Assert.IsType<Ok<List<ShoppingCartResponseDto>>>(result);
         var okResult = result as Ok<List<ShoppingCartResponseDto>>;
-        Assert.Equal(2, okResult.Value.Count);
+        Assert.Equal(2, okResult.Value!.Count);
     }
 
     [Fact]

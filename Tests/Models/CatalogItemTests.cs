@@ -15,11 +15,11 @@ public class CatalogItemTests
     [InlineData(null)]
     [InlineData("")]
     [InlineData("   ")]
-    public void Update_InvalidName_ShouldThrowArgumentException(string invalidName)
+    public void Update_InvalidName_ShouldThrowArgumentException(string? invalidName)
     {
         var item = new CatalogItem("Producto", 5m);
 
-        var ex = Assert.Throws<ArgumentException>(() => item.Update(invalidName, 5m));
+        var ex = Assert.Throws<ArgumentException>(() => item.Update(invalidName!, 5m));
         Assert.Equal("Name is required", ex.Message);
     }
 

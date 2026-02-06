@@ -16,11 +16,11 @@ public class ClientTests
     [InlineData(null)]
     [InlineData("")]
     [InlineData("   ")]
-    public void Update_InvalidName_ShouldThrowArgumentException(string invalidName)
+    public void Update_InvalidName_ShouldThrowArgumentException(string? invalidName)
     {
         var client = new Client("Pedro", "987654321");
 
-        var ex = Assert.Throws<ArgumentException>(() => client.Update(invalidName, "987654321"));
+        var ex = Assert.Throws<ArgumentException>(() => client.Update(invalidName!, "987654321"));
         Assert.Equal("Name is required", ex.Message);
     }
 
