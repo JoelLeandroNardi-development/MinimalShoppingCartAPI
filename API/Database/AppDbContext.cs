@@ -2,11 +2,8 @@
 
 namespace MinimalAPICrud;
 
-public class AppDbContext : DbContext
+public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
 {
-    public AppDbContext(DbContextOptions<AppDbContext> options)
-        : base(options) { }
-
     public DbSet<CatalogItem> CatalogItems => Set<CatalogItem>();
     public DbSet<Client> Clients => Set<Client>();
     public DbSet<ShoppingCart> ShoppingCarts => Set<ShoppingCart>();

@@ -5,10 +5,10 @@ namespace MinimalAPICrud.Tests;
 
 public class ShoppingCartActionsTests
 {
-    private AppDbContext GetDbContextWithData()
+    private static AppDbContext GetDbContextWithData()
     {
         var options = new DbContextOptionsBuilder<AppDbContext>()
-            .UseInMemoryDatabase(databaseName: "ShoppingCartTestDb")
+            .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
             .Options;
         var db = new AppDbContext(options);
         db.ShoppingCarts.Add(new ShoppingCart());
@@ -23,7 +23,7 @@ public class ShoppingCartActionsTests
         using var db = GetDbContextWithData();
         var result = await ShoppingCartActions.GetAll(db);
         Assert.IsType<Ok<List<ShoppingCartResponseDto>>>(result);
-        var okResult = result as Ok<List<ShoppingCartResponseDto>>;
+        var okResult = result;
         Assert.Equal(2, okResult.Value!.Count);
     }
 

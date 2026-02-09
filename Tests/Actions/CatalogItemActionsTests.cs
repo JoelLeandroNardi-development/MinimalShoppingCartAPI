@@ -6,10 +6,10 @@ namespace MinimalAPICrud.Tests;
 
 public class CatalogItemActionsTests
 {
-    private AppDbContext GetDbContextWithData()
+    private static AppDbContext GetDbContextWithData()
     {
         var options = new DbContextOptionsBuilder<AppDbContext>()
-            .UseInMemoryDatabase(databaseName: "CatalogTestDb")
+            .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
             .Options;
         var db = new AppDbContext(options);
         db.CatalogItems.Add(new CatalogItem("Item1", 10m));
@@ -24,7 +24,7 @@ public class CatalogItemActionsTests
         using var db = GetDbContextWithData();
         var result = await CatalogItemActions.GetAll(db);
         Assert.IsType<Ok<List<CatalogItemResponseDto>>>(result);
-        var okResult = result as Ok<List<CatalogItemResponseDto>>;
+        var okResult = result;
         Assert.Equal(2, okResult.Value!.Count);
     }
 

@@ -5,10 +5,10 @@ namespace MinimalAPICrud.Tests;
 
 public class ClientActionsTests
 {
-    private AppDbContext GetDbContextWithData()
+    private static AppDbContext GetDbContextWithData()
     {
         var options = new DbContextOptionsBuilder<AppDbContext>()
-            .UseInMemoryDatabase(databaseName: "ClientTestDb")
+            .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
             .Options;
         var db = new AppDbContext(options);
         db.Clients.Add(new Client("Alice", "123456789"));
@@ -51,7 +51,7 @@ public class ClientActionsTests
         var dto = new ClientCreateDto("Charlie", "555555555");
         var result = await ClientActions.Create(dto, db);
         Assert.IsType<Created<ClientResponseDto>>(result);
-        var created = result as Created<ClientResponseDto>;
+        var created = result;
         Assert.Equal("Charlie", created.Value!.Name);
     }
 

@@ -3,11 +3,9 @@ using System.Text.Json;
 
 namespace MinimalAPICrud;
 
-public class ProblemDetailsMiddleware
+public class ProblemDetailsMiddleware(RequestDelegate next)
 {
-    private readonly RequestDelegate _next;
-
-    public ProblemDetailsMiddleware(RequestDelegate next) => _next = next;
+    private readonly RequestDelegate _next = next;
 
     public async Task Invoke(HttpContext context)
     {
